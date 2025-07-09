@@ -4,9 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SignIn extends  BasePage{
+public class SignInPage extends  BasePage{
 
-    public SignIn (WebDriver driver){
+    public SignInPage(WebDriver driver){
         super(driver);
 
 
@@ -33,10 +33,11 @@ public class SignIn extends  BasePage{
 
 
     }
-    public  void enterPassword(){
+    public  void enterPassword() throws InterruptedException {
         waitforvisiivlity(inputPassword);
         inputPassword.sendKeys(System.getProperty("password"));
         btnSignin.click();
+        Thread.sleep(15000);
     }
     //WHILE RUNNING MVN USE COMMAND LIKE THIS
     //mvn clean test -Dusername=myemail@example.com -Dpassword=MySecret123 !OKboss ;)
