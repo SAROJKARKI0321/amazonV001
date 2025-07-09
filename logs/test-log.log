@@ -286,3 +286,14 @@
 2025-07-09 11:53:01 INFO  BaseTest:65 - Trying to take the screenshot
 2025-07-09 11:53:02 INFO  BaseTest:70 - Screenshot saved to a new file
 2025-07-09 11:53:02 INFO  TC002_AddToCartTest:56 - Closing the broswer
+2025-07-09 12:41:49 INFO  TC002_AddToCartTest:40 - Getting the driver started
+2025-07-09 12:41:53 INFO  TC002_AddToCartTest:43 - Browser started and opened amazon
+2025-07-09 12:41:53 INFO  TC002_AddToCartTest:47 - Logging before running tests
+2025-07-09 12:41:53 INFO  HomePage:39 - Signing into the webiste with a premade account
+2025-07-09 12:42:21 INFO  HomePage:27 - Waiting for seach box to appear
+2025-07-09 12:42:31 INFO  SearchResultPage:39 - Selecting the first product
+2025-07-09 12:42:37 INFO  SearchResultPage:43 - Adding to cart
+2025-07-09 12:42:40 INFO  SearchResultPage:49 - Added items to the cart 
+2025-07-09 12:42:43 INFO  TC002_AddToCartTest:65 - Trying to take the screenshot
+2025-07-09 12:42:43 INFO  TC002_AddToCartTest:70 - Screenshot saved to a new file
+2025-07-09 12:42:43 INFO  TC002_AddToCartTest:56 - Closing the broswer

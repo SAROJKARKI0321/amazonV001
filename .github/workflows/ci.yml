@@ -4,10 +4,8 @@ on:
   push:
     branches: [ main ]
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,8 +15,17 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'   # or 11, depending on your project
+          java-version: '17'
           distribution: 'temurin'
 
+      - name: Set up virtual display
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          nohup Xvfb :99 -screen 0 1920x1080x24 &
+          export DISPLAY=:99    
+
       - name: Build with Maven
-        run: mvn clean test  -Dusername=${{ secrets/MY_USERNAME }} -Dpassword=${{ secrets.MY_PASSWORD }}
+        run: mvn clean test -Dusername=${{ secrets.MY_USERNAME }} -Dpassword=${{ secrets.MY_PASSWORD }}
+        env:
+          Display: :99
