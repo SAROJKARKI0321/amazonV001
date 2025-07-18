@@ -20,6 +20,10 @@ public class HomePage extends  BasePage{
     @FindBy(xpath = "//span[normalize-space()='Hello, sign in']")
     WebElement btnSignIn;
 
+    @FindBy(xpath = "//span[@class=\"nav-line-2\"][normalize-space()=\"Cart\"]")
+    WebElement cartBtn;
+
+
 
     //actions
     public  void searchItems(String itemName)
@@ -40,5 +44,11 @@ public class HomePage extends  BasePage{
         waitforClickbility(btnSignIn);
         btnSignIn.click();
 
+    }
+
+    public void goToMyCart(){
+        logger.info("Clicking in my cart");
+        waitforvisiivlity(myCart);
+        myCart.click();
     }
 }
