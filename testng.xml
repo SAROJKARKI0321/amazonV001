@@ -5,8 +5,9 @@
     </listeners>
     <test name="Login Tests">
         <classes>
-           <!-- <class name="Tests.TC001_LoginTest"/>-->
+         <!--  <class name="Tests.TC001_LoginTest"/>-->
             <class name="Tests.TC002_AddToCartTest"></class>
+           <class name="Tests.TC003_RemoveItemFromCart"></class>
         </classes>
     </test>
 </suite>

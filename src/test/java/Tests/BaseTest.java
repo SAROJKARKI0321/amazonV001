@@ -9,6 +9,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -16,6 +19,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
@@ -29,13 +34,22 @@ public class BaseTest {
 
     public BaseTest(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
 
     @BeforeClass
-    public void setUp(ITestContext context) throws InterruptedException {
+    public void setUp(ITestContext context) throws InterruptedException, MalformedURLException {
 
-        driver=new ChromeDriver();
+        ChromeOptions options=new ChromeOptions();
+       options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--disable-dev-shm-usage");
+         driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
+
+
+
         context.setAttribute("driver",driver);
         logger.info("Getting the driver started");
 

@@ -1,12 +1,12 @@
 package Pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class SignInPage extends  BasePage{
+public class SignInPage extends  BasePage {
 
-    public SignInPage(WebDriver driver){
+    public SignInPage(WebDriver driver) {
         super(driver);
 
 
@@ -22,24 +22,43 @@ public class SignInPage extends  BasePage{
     @FindBy(xpath = "//input[@id='ap_password']")
     WebElement inputPassword;
 
-    @FindBy (xpath = "//input[@id='signInSubmit']")
+    @FindBy(xpath = "//input[@id='signInSubmit']")
     WebElement btnSignin;
 
     //actions
-    public void enterEmail(){
+    public void enterEmail() {
         waitforvisiivlity(inputEmail);
+
         inputEmail.sendKeys(System.getProperty("username"));
         btnContinue.click();
 
 
     }
-    public  void enterPassword() throws InterruptedException {
+
+    public void enterPassword() throws InterruptedException {
         waitforvisiivlity(inputPassword);
+
         inputPassword.sendKeys(System.getProperty("password"));
         btnSignin.click();
-        Thread.sleep(15000);
-    }
-    //WHILE RUNNING MVN USE COMMAND LIKE THIS
-    //mvn clean test -Dusername=myemail@example.com -Dpassword=MySecret123 !OKboss ;)
+        try {
 
+            WebElement continueShopping = wait.until(ExpectedConditions.elementToBeClickable(
+                    By.xpath("//button[normalize-space()='Continue shopping']")
+            ));
+
+            ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", continueShopping);
+
+            continueShopping.click();
+            logger.info("Clicked Continue shopping button.");
+
+        } catch (TimeoutException e) {
+            logger.info("Continue shopping button not visible or clickable.");
+        } catch (Exception e) {
+            logger.error("Error clicking Continue shopping button:", e);
+        }
+
+        //WHILE RUNNING MVN USE COMMAND LIKE THIS
+        //mvn clean test -Dusername=myemail@example.com -Dpassword=MySecret123 !OKboss ;)
+
+    }
 }
