@@ -41,21 +41,24 @@ public class BaseTest {
     @BeforeClass
     public void setUp(ITestContext context) throws InterruptedException, MalformedURLException {
 
-        ChromeOptions options=new ChromeOptions();
+      /*  ChromeOptions options=new ChromeOptions();
        options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--disable-dev-shm-usage");
-         driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
-
+         driver=new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);*/
+        driver=new ChromeDriver();
 
 
         context.setAttribute("driver",driver);
         logger.info("Getting the driver started");
 
+
         driver.get("https://www.amazon.com/");
+
         logger.info("Browser started and opened amazon");
         driver.manage().window().maximize();
+        driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         logger.info("Logging before running tests");

@@ -29,7 +29,8 @@ public class SignInPage extends  BasePage {
     public void enterEmail() {
         waitforvisiivlity(inputEmail);
 
-        inputEmail.sendKeys(System.getProperty("username"));
+        inputEmail.sendKeys("sarojkarkicareers@gmail.com");
+      //  inputEmail.sendKeys(System.getProperty("username"));
         btnContinue.click();
 
 
@@ -37,8 +38,8 @@ public class SignInPage extends  BasePage {
 
     public void enterPassword() throws InterruptedException {
         waitforvisiivlity(inputPassword);
-
-        inputPassword.sendKeys(System.getProperty("password"));
+        inputPassword.sendKeys("Amazon$19");
+       // inputPassword.sendKeys(System.getProperty("password"));
         btnSignin.click();
         try {
 

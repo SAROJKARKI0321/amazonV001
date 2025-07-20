@@ -1,9 +1,11 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 public class HomePage extends  BasePage{
 
@@ -23,15 +25,20 @@ public class HomePage extends  BasePage{
     @FindBy(xpath = "//span[@class=\"nav-line-2\"][normalize-space()=\"Cart\"]")
     WebElement cartBtn;
 
+    @FindBy(xpath = "//select[@id='searchDropdownBox']")
+    WebElement categorySelect;
+
 
 
     //actions
-    public  void searchItems(String itemName)
+    public  SearchResultPage searchItems(String itemName)
     {
         logger.info("Waiting for seach box to appear");
         logger.debug("Clicked and sending the seacrh keys");
         searchBox.sendKeys(itemName);
         driver.findElement(By.xpath("//input[@id='nav-search-submit-button']")).click();
+        SearchResultPage searchResultPage=new SearchResultPage(driver);
+        return searchResultPage;
     }
 
     public void seeCart(){
@@ -51,4 +58,15 @@ public class HomePage extends  BasePage{
         waitforvisiivlity(myCart);
         myCart.click();
     }
+
+    public  SearchResultPage selectDepartment_andSearch (String departmentName,String product){
+        Select select=new Select(categorySelect);
+        select.selectByVisibleText(departmentName);
+        waitforClickbility(searchBox);
+        searchBox.sendKeys(product);
+        driver.findElement(By.xpath("//input[@id='nav-search-submit-button']")).click();
+        return  new SearchResultPage(driver);
+
+    }
+
 }

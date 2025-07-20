@@ -12,7 +12,7 @@ public class TC002_AddToCartTest extends BaseTest{
     public  void checkyourcart(){
 
         HomePage homePage=new HomePage(driver);
-        homePage.searchItems(ConfigReader.getProperty("product"));
+        homePage.searchItems(ConfigReader.getProperty("product2"));
         SearchResultPage newSearchPage=new SearchResultPage(driver);
         newSearchPage.addItemTOcart();
 
